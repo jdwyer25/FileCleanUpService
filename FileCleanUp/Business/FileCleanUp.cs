@@ -8,16 +8,16 @@ namespace FileCleanUp.Business
         public void RunCleanUp(Logging logging)
         {
             DirectoryInfo dir = new DirectoryInfo(Config.FolderLocation);
+            Int32.TryParse(Config.NumberOfDaysOld, out int numberOfDaysOld);
 
             var count = 0;
             foreach (var folder in dir.GetDirectories())
             {
-                folder.Delete(true);
                 count++;
-                /*if (folder.LastWriteTimeUtc.Date < DateTime.Now.Date.AddDays(-30))
+                if (folder.LastWriteTimeUtc.Date < DateTime.Now.Date.AddDays(-1 * numberOfDaysOld))
                 {
                     folder.Delete(true);
-                }*/
+                }
             }
 
             logging.WriteEntry(Enums.Enums.LogLevel.Trace, $"Folders Deleted: {count}");
