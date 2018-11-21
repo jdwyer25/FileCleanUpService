@@ -47,5 +47,7 @@ namespace FileCleanUp.Business
         }
 
         public static string FolderLocation => ConfigurationManager.AppSettings["FolderLocation"];
+
+        public static string NumberOfDaysOld => ConfigurationManager.AppSettings["NumberOfDaysOld"];
     }
 }
